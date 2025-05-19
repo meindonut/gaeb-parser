@@ -1,5 +1,5 @@
 [project]
-name = "gaeb_parser"
+name = "gaeb-parser"
 version = "0.1.0"
 description = "parses xml gaeb files and converts them to a pandas dataframe"
 authors = [
@@ -22,5 +22,5 @@ build-backend = "setuptools.build_meta"
 where = ["."]
 
 [project.urls]
-Homepage = "https://github.com/meindonut/gaeb_parser"
-Issues = "https://github.com/meindonut/gaeb_parser/issues"
+Homepage = "https://github.com/meindonut/gaeb-parser"
+Issues = "https://github.com/meindonut/gaeb-parser/issues"
