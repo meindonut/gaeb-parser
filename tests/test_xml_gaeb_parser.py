@@ -7,11 +7,11 @@ def debugger_is_active() -> bool:
 
 if debugger_is_active:
     import os, sys
-    sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..\\lv_explorer')))
+    sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..\\gaeb_parser')))
 # ----- for direct debugging ------
 
 lv_file_name = "Pruefdatei GAEB DA XML 3.3 - Bauausfuehrung - V 04 04 2024.x83"
-lv_file = os.path.abspath(os.path.join(os.path.dirname(__file__), f".\\pruefung_gaeb_da_xml_3_3\\bauausfuehrung\\{lv_file_name}"))
+lv_file = os.path.abspath(os.path.join(os.path.dirname(__file__), f".\\official_tests_gaeb_da_xml_3_3\\bauausfuehrung\\{lv_file_name}"))
 
 from xml_gaeb_parser import XmlGaebParser
 import pytest
