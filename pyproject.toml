@@ -1,5 +1,5 @@
 [project]
-name = "gaeb-parser"
+name = "gaeb_parser"
 version = "0.1.0"
 description = "parses xml gaeb files and converts them to a pandas dataframe"
 authors = [
