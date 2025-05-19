@@ -1,5 +1,5 @@
 # gaeb_parser
-parses xml gaeb files and returns them in a pandas dataframe
+parses xml gaeb files and converts them to a pandas dataframe
 
 ![Screenshot of the example import.](example_screenshot.jpg)
 
