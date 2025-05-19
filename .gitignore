@@ -1,3 +1,5 @@
 /.venv
 /gaeb_parser/__pycache__
 /tests/__pycache__
+/gaeb_parser.egg-info
+/dist
