@@ -1,4 +1,5 @@
 # gaeb_parser
+parses xml gaeb files and returns them in a pandas dataframe
 
 ## Use it:
 - run main.py
