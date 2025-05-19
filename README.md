@@ -1,11 +1,10 @@
-# gaeb_parser
+# gaeb-parser
 parses xml gaeb files and converts them to a pandas dataframe
 
 ![Screenshot of the example import.](example_screenshot.jpg)
 
 ## Use it:
-- run main.py
-- see console output
+`pip install gaeb-parser`
 
 ## Change it:
 
