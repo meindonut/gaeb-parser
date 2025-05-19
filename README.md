@@ -1,6 +1,8 @@
 # gaeb_parser
 parses xml gaeb files and returns them in a pandas dataframe
 
+![Screenshot of the example import.](example_screenshot.jpg)
+
 ## Use it:
 - run main.py
 - see console output
