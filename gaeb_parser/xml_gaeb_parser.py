@@ -69,10 +69,16 @@ from bs4 import BeautifulSoup
 # example usage see tests
 
 class XmlGaebParser():
-    """parses gaeb files and saves them as a table in pandas dataframe"""
+    """parses gaeb files and saves them as a table in pandas dataframe and dicts"""
     def __init__(self, file_path: str):
+        self.gaeb_info = {}
+        self.project_info = {}
+        self.award_info = {}
+        self.own_info = {}
+        self.boq_info = {}
+        self.dp = None
+
         self.project_name = None
-        self.project_id = None
         self.dict_list = []
         self.oz = [None] * 3
         self.soup = None
@@ -226,33 +232,33 @@ class XmlGaebParser():
             if child.name == None:
                 pass
             elif child.name == 'GAEBInfo':
-                pass
-                # parse info about gaeb exporter
+                self._parse_to_dict(child, self.gaeb_info)
             elif child.name == 'PrjInfo':
-                for subchild in child.children:
-                    if subchild.name == None:
-                        pass
-                    elif subchild.name == 'NamePrj':
-                        self.project_id = subchild.text.strip()
-                    elif subchild.name == 'LblPrj':
-                        self.project_name = subchild.text.strip()
-                    else:
-                        print(f"GAEB Parser: Subelement with name {subchild.name} in {child.name} not parsed")
-                pass
-                # parse info project details
+                self._parse_to_dict(child, self.project_info)
+                self.project_name = self.project_info["LblPrj"]
             elif child.name == 'Award':
                 self._parse_award(child)
             else:
                 print(f"GAEB Parser: Element with name {child.name} of parent {soup.name} not parsed")
         return
 
+    def _parse_to_dict(self, soup, container: dict):
+         for child in soup.children:
+            if child.name == None:
+                pass
+            else:
+                container[child.name] = child.text
 
     def _parse_award(self, soup: BeautifulSoup):
         for child in soup.children:
             if child.name == None:
                 pass
-            elif child.name in ['DP', 'AwardInfo', 'OWN']:
-                pass
+            elif child.name == 'AwardInfo':
+                self._parse_to_dict(child, self.award_info)
+            elif child.name == 'OWN':
+                self._parse_to_dict(child, self.own_info)
+            elif child.name == 'DP':
+                self.dp = int(child.text)
             elif child.name == 'AddText':
                 self._parse_pretext(child)
             elif child.name == 'BoQ':
@@ -287,8 +293,7 @@ class XmlGaebParser():
             if child.name == None:
                 pass
             elif child.name == 'BoQInfo':
-                print("GAEB Parser: LV settings not parsed")
-                pass
+                self._parse_to_dict(child, self.boq_info)
             elif child.name == 'BoQBody':
                 self._parse_body(child)
             else:
