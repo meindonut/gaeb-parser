@@ -15,13 +15,20 @@ lv_file = os.path.abspath(os.path.join(os.path.dirname(__file__), f".\\official_
 
 from xml_gaeb_parser import XmlGaebParser
 
-def test_gaebDaXmlImport():
+def test_XmlGaebParser():
     parser = XmlGaebParser(lv_file)
     df = parser.get_df()
     assert (df.columns == ['Projekt', 'OZ', 'Gewerk', 'Untergewerk', 'Kurztext', 'Qty', 'QU', 'TLK', 'Langtext']).all()
     assert df.loc[0,"Projekt"] ==  parser.project_name
+    assert parser.gaeb_info["Version"] == "3.3"
+    assert parser.project_info["NamePrj"] == "BVBS GAEB Muster"
+    assert parser.award_info["Cur"] == "EUR"
+    assert parser.own_info["AwardNo"] == "BVBS-4711"
+    assert parser.boq_info["Name"] == "BVBS GAEB Bauausf."
+    assert parser.dp == 83
+
     assert df.__len__() == 35
 
 # ----- for direct debugging ------
 if debugger_is_active:
-    test_gaebDaXmlImport()
+    test_XmlGaebParser()
