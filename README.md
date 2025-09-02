@@ -31,5 +31,4 @@ The data ist the available as a [Pandas](https://pandas.pydata.org/) dataframe. 
 `pytest`
 
 ## To-Dos:
-- some elements are not parsed yet, see console output
-- XML export
+- some minor elements are not parsed yet, see console output
