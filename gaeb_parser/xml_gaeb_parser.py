@@ -400,16 +400,24 @@ class XmlGaebParser():
                 subno = child.text
                 rno_part = rno_part + '.' + subno
                 pass
-            elif child.name == 'Provis':
+            elif child.name == 'Provis':    # optional position
                 info += "opt, "
-            elif child.name == 'ALNGroupNo':
+            elif child.name == 'ALNGroupNo':    # linked position
                 info += child.text + '.'
-            elif child.name == 'ALNSerNo':
+            elif child.name == 'ALNSerNo':      # linked position
                 info += child.text + ', '
-            elif child.name == 'MarkupType':
+            elif child.name == 'MarkupType':    # price increase type
                 info += "MT:" + child.text + ", "
-            elif child.name == 'SumDescr':
+            elif child.name == 'SumDescr':      # sum description for sub positions
                 info += "Sum, "
+            elif child.name == 'LumpSumItem':   # psch position -> parsed above with QU -> check needed?
+                pass
+            elif child.name == 'PerfNo':        # no of description
+                info += "ABNo:" + child.text + ", "
+            elif child.name == 'PerfLbl':       # dont parse title of description
+                pass
+            elif child.name == 'UPBkdn':        # EP Aufgliederung
+                 info += 'EP, '
             else:
                 print(f"GAEB Parser: In item '{item_soup.name}' with id '{item_id}' child with name '{child.name}' not parsed")
 
