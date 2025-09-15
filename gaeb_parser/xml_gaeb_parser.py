@@ -267,7 +267,7 @@ class XmlGaebParser():
                 print(f"GAEB Parser: Element with name {child.name} of item {soup.name} not parsed")
 
         # _parse_pretext() and _parse_boq() with subfunctions work on self.dict_list -> pack into df
-        self._df = pd.DataFrame(self.dict_list, columns=['Projekt', 'OZ', 'Gewerk', 'Untergewerk', 'Kurztext', 'Qty', 'QU', 'TLK', 'Langtext'])
+        self._df = pd.DataFrame(self.dict_list, columns=['Projekt', 'OZ', 'Gewerk', 'Untergewerk', 'Kurztext', 'Qty', 'QU', 'TLK', 'Langtext', 'Info'])
         
 
     def _parse_pretext(self, item_soup):
@@ -284,7 +284,8 @@ class XmlGaebParser():
             'Qty': "",
             'QU': "",
             'TLK': "",
-            'Langtext': pretext_long_text
+            'Langtext': pretext_long_text,
+            'Info':"pre"
         }
         self.dict_list.append(result)
 
@@ -367,6 +368,7 @@ class XmlGaebParser():
         langtext = ""
         textoutltxt = "(Positionslos)"
         tlk_text = ""
+        info = ""
 
         for child in item_soup.children:
             if child.name == None:
@@ -398,6 +400,16 @@ class XmlGaebParser():
                 subno = child.text
                 rno_part = rno_part + '.' + subno
                 pass
+            elif child.name == 'Provis':
+                info += "opt, "
+            elif child.name == 'ALNGroupNo':
+                info += child.text + '.'
+            elif child.name == 'ALNSerNo':
+                info += child.text + ', '
+            elif child.name == 'MarkupType':
+                info += "MT:" + child.text + ", "
+            elif child.name == 'SumDescr':
+                info += "Sum, "
             else:
                 print(f"GAEB Parser: In item '{item_soup.name}' with id '{item_id}' child with name '{child.name}' not parsed")
 
@@ -425,6 +437,7 @@ class XmlGaebParser():
             'OZ': oz_text,
             'Gewerk': self.title[0],
             'Untergewerk': self.title[1],
+            'Info': info
             })
             
         self.dict_list.append(parsed_dict)
