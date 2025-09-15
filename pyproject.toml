@@ -1,6 +1,6 @@
 [project]
 name = "gaeb-parser"
-version = "0.1.1"
+version = "0.1.2"
 description = "parses xml gaeb files and converts them to a pandas dataframe"
 authors = [
     { name = "Lucas Carlier", email = "mail@carlier.info" }
