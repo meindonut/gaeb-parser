@@ -23,7 +23,7 @@ The data ist the available as a [Pandas](https://pandas.pydata.org/) dataframe. 
 `pip install -r requirements.txt`
 
 
-### runt tests
+### run tests
 `Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force`
 
 `.venv/Scripts/activate.ps1`
